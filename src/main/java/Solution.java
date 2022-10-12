@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 // https://neetcode.io/practice
 
@@ -55,7 +56,12 @@ class TwoSums {
 
 class ValidPalindrome {
     public boolean isPalindrome(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        return sb.length() == sb.reverse().length();
+        String lower = s.toLowerCase();
+        StringBuilder sb = new StringBuilder(lower);
+        if (sb.toString() == sb.reverse().toString()) {
+            return true;
+        }
+
+        return false;
     }
 }
