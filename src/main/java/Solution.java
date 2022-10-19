@@ -1,5 +1,5 @@
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 // https://neetcode.io/practice
 
@@ -132,3 +132,62 @@ class ValidPalindrome {
 //        return list2;
 //        }
 //        }
+
+
+class Result {
+
+    /*
+     * Complete the 'isPangram' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING_ARRAY pangram as parameter.
+     */
+
+    public static String isPangram(List<String> pangram) {
+        String alpha = "abcdefghijklmnopqrstuvqxyz";
+        for (int i = 0; i < pangram.size(); i++) {
+            List<String> panList = pangram.stream().map(String::toLowerCase).collect(Collectors.toList());
+            String str = panList.get(i).toLowerCase();
+            String newStr = str.replace(" ", "");
+            if (newStr.contains(alpha)) {
+                return "1";
+            } else {
+                return "0";
+            }
+
+        }
+        return "1";
+//
+//        for(int i = 0; i < pangram.size(); i++){
+//            String alpha = "abcdefghijklmnopqrstuvqxyz";
+//            pangram.get(i);
+//            if(pangram.contains(alpha)){
+//                return "1";
+//            }
+//            else{
+//                return "0";
+//            }
+//        }
+//        return null;
+    }
+
+    public static int findMinimumDays(List<Float> durations) {
+        Collections.sort( durations);
+        int days = 0;
+        int beginning = 0;
+        int end = durations.size() - 1;
+        while (beginning < end && durations.iterator().hasNext()) {
+            for (int i = 0; i < durations.size(); i++) {
+                if (durations.get(i) + durations.get(i + 1) <= 3.0) {
+                    days++;
+                }
+                for (int j = i + 1; j < durations.size(); j++) {
+                    if (durations.get(i) + durations.get(j + 1) <= 3.0) {
+                        days++;
+                    }
+                }
+            }
+        }
+        return days;
+    }
+}
