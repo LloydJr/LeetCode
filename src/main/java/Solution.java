@@ -194,20 +194,18 @@ class Result {
 
 class BinarySearch {
     public int search(int[] nums, int target) {
-        int i = 0;
-        int j = nums.length - 1;
-
-        while (i <- j){
-            int mid = (i + j) / 2;
-            if( nums[mid] == target){
-                return mid;
-            } else if (nums[mid] < target) {
-                i = mid + 1;
+        int index=-1;
+        int begin=0, end=nums.length-1, middle=(end+begin)/2;
+        while(begin<=end){
+            if (nums[middle]==target) return middle;
+            if (nums[middle]>target){
+                end=middle-1; middle=(end+begin)/2;
             }
-            else {
-                j = mid - 1;
+            if (nums[middle]<target){
+                begin=middle+1; middle=(end+begin)/2;
             }
         }
-        return -1;
+        return index;
     }
 }
+//Fastest Solution 0ms
